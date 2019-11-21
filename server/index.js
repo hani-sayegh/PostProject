@@ -37,5 +37,10 @@ app.delete("/api/posts/:id", (req, res) =>
 
 })
 
+if (process.env.NODE_ENV === 'production')
+{
+    app.use(express.static(__dirname + '/public'));
+}
+
 const portNumber = process.env.PORT || 333;
 app.listen(portNumber, () => { console.log("listening to: " + portNumber) });
