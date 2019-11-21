@@ -16,12 +16,15 @@ app.use(morgan("tiny"));
 
 app.get("/api/posts", async (req, res) =>
 {
-    res.json(await db.find());
+    var found = await db.find();
+    console.log(found);
+
+    res.json(found);
 })
 
-app.post("/api/posts", (req, res) =>
+app.post("/api/posts", async (req, res) =>
 {
-    db.insert(req.body);
+    await db.insert(req.body);
     console.log(req.body);
 
     res.status(201).end();
